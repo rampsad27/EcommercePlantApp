@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/ui/data/plantdata.dart';
+import 'package:plant_app/ui/modules/components/model.dart';
+import 'package:plant_app/ui/modules/widgets/bottomnav.dart';
+import 'package:plant_app/ui/modules/widgets/listviewHorizontal.dart';
+import 'package:plant_app/ui/modules/widgets/listviewVertical.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -42,6 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text("View all")
               ],
             ),
+            ListviewHorizontal(
+              plantModelList: plantData,
+            ),
             const Row(
               children: [
                 Text(
@@ -51,10 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 Spacer(),
                 Text("View all")
               ],
-            )
+            ),
+            ListviewVertical(
+              plantModelList: plantData,
+            ),
           ],
         ),
       ),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }

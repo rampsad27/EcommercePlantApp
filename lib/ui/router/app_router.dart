@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_app/ui/modules/components/screen/loginScreen.dart';
-import 'package:plant_app/ui/modules/components/screen/onboarding1.dart';
-import 'package:plant_app/ui/modules/components/screen/onboarding2.dart';
-import 'package:plant_app/ui/modules/components/screen/onboarding3.dart';
-import 'package:plant_app/ui/modules/components/screen/registerscreen.dart';
-import 'package:plant_app/ui/modules/components/screen/welcomescreen.dart';
-import 'package:plant_app/ui/modules/components/screen/homeScreen.dart';
+import 'package:plant_app/ui/modules/screen/loginScreen.dart';
+import 'package:plant_app/ui/modules/screen/onboarding1.dart';
+import 'package:plant_app/ui/modules/screen/onboarding2.dart';
+import 'package:plant_app/ui/modules/screen/onboarding3.dart';
+import 'package:plant_app/ui/modules/screen/registerscreen.dart';
+import 'package:plant_app/ui/modules/screen/welcomescreen.dart';
+import 'package:plant_app/ui/modules/screen/homeScreen.dart';
 
 class AppRouter {
   static GoRouter router = GoRouter(

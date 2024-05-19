@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_app/ui/modules/components/screen/homeScreen.dart';
-import 'package:plant_app/ui/modules/components/screen/loginScreen.dart';
+import 'package:plant_app/ui/modules/screen/homeScreen.dart';
+import 'package:plant_app/ui/modules/screen/loginScreen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -113,8 +113,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   //     "/onboarding1/onboarding2/onboarding3/login/register/home");
                 },
                 child: Container(
+                    width: double.infinity,
+                    height: 50,
                     color: Colors.green,
-                    child: const Center(child: Text("Register"))),
+                    child: const Center(
+                        child: Text(
+                      "Register",
+                      style: TextStyle(color: Colors.white),
+                    ))),
               ),
               const Center(
                   child: Text(
