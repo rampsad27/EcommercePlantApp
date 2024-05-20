@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/ui/data/plantdata.dart';
-import 'package:plant_app/ui/modules/components/model.dart';
 import 'package:plant_app/ui/modules/widgets/bottomnav.dart';
 import 'package:plant_app/ui/modules/widgets/listviewHorizontal.dart';
 import 'package:plant_app/ui/modules/widgets/listviewVertical.dart';

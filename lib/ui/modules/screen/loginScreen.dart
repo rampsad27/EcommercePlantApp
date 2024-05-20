@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_app/ui/modules/google_sign_in/googleauth_repository.dart';
 import 'package:plant_app/ui/modules/screen/registerscreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -8,6 +9,8 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
+
+// final AuthenticationRepository _googleSignIn = AuthenticationRepository();
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
@@ -106,7 +109,11 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    GoogleSignInRepository googleSignInRepository =
+                        GoogleSignInRepository();
+                    await googleSignInRepository.signInWithGoogle();
+                  },
                   child: Container(
                     height: 50,
                     width: 150,
