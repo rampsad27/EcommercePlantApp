@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_app/ui/modules/google_sign_in/googleauth_repository.dart';
 import 'package:plant_app/ui/modules/screen/homeScreen.dart';
 import 'package:plant_app/ui/modules/screen/loginScreen.dart';
 
@@ -105,6 +106,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   "I agree to the Terms & Conditions & Private policy set out by this site"),
               InkWell(
                 onTap: () {
+                  String email = _emailregisterController.text;
+                  String password = _passwordregisterController.text;
+                  GoogleSignInRepository googleSignInRepository =
+                      GoogleSignInRepository();
+                  googleSignInRepository.signUpWithEmailandPassword(
+                      email, password);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -135,7 +142,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      GoogleSignInRepository googleSignInRepository =
+                          GoogleSignInRepository();
+                      await googleSignInRepository.signInWithGoogle();
+                    },
                     child: Container(
                       height: 50,
                       width: 150,
