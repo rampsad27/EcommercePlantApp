@@ -9,7 +9,6 @@ class GoogleSignInRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
 
@@ -32,6 +31,7 @@ class GoogleSignInRepository {
       print("SIgnin happening");
       UserCredential response = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
+      print(response);
       final User? user = response.user;
       if (user == null) {
         throw Exception('User is null');
@@ -44,7 +44,6 @@ class GoogleSignInRepository {
       await saveUser(UserEntity(
         email: email,
         password: password,
-        uid: user.uid,
       ));
     } on FirebaseAuthException catch (e) {
       print("Exception has occurred: $e");
@@ -61,8 +60,7 @@ class GoogleSignInRepository {
 
       print(token);
 
-      await saveUser(UserEntity(
-          uid: response.user?.uid ?? "", email: email, password: password));
+      await saveUser(UserEntity(email: email, password: password));
     } on FirebaseAuthException catch (e) {
       print("Exception has occured $e");
     } on Exception catch (e) {
@@ -77,12 +75,8 @@ class GoogleSignInRepository {
 
   Future<void> saveUser(UserEntity userEntity) async {
     CollectionReference collectionReference = _firestore.collection("user");
-    DocumentReference dr = collectionReference.doc(userEntity.uid);
+    DocumentReference dr = collectionReference.doc(userEntity.email);
     await dr.set(userEntity.toMap());
-    // await firestore
-    //     .collection('user')
-    //     .doc(userEntity.uid)
-    //     .set(userEntity.copyWith(email: "abcd").toMap());
   }
 
   Future<List<UserEntity>> getUser() async {

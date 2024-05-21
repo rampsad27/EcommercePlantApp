@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '114659896723',
     projectId: 'plantecommerce-b7dd8',
     storageBucket: 'plantecommerce-b7dd8.appspot.com',
+    androidClientId: '114659896723-lmbtnrr7veqc9147ckl76pjjdp67iqcn.apps.googleusercontent.com',
     iosClientId: '114659896723-ttlvi7ighe0trcb78mk4kkc3a9cmd6c0.apps.googleusercontent.com',
     iosBundleId: 'com.example.plantApp',
   );

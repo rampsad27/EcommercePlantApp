@@ -112,12 +112,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       GoogleSignInRepository();
                   googleSignInRepository.signUpWithEmailandPassword(
                       email, password);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
-                  // context.go(
-                  //     "/onboarding1/onboarding2/onboarding3/login/register/home");
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => const HomeScreen()));
+                  context.go("/home");
                 },
                 child: Container(
                     width: double.infinity,
@@ -196,10 +195,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const Text("Already have an account?"),
                   TextButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginScreen()));
+                        context.go("/login");
                       },
                       child: const Text("Login"))
                 ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_app/ui/modules/google_sign_in/googleauth_repository.dart';
 import 'package:plant_app/ui/modules/screen/homeScreen.dart';
-import 'package:plant_app/ui/modules/screen/registerscreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,11 +10,10 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-// final AuthenticationRepository _googleSignIn = AuthenticationRepository();
-
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,10 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       GoogleSignInRepository();
                   await googleSignInRepository.signInWithEmailAndPassword(
                       email, password);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
+                  context.go('/home'); // Use GoRouter for navigation
                 },
                 child: Container(
                   width: double.infinity,
@@ -178,17 +173,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   const Text("Didn't have an account? "),
                   TextButton(
-                      onPressed: () {
-                        // context.go(
-                        // "/onboarding1/onboarding2/onboarding3/login/register");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const RegisterScreen()));
-                      },
-                      child: const Text("Register"))
+                    onPressed: () {
+                      context.go(
+                          "/register"); // Use correct route for registration
+                    },
+                    child: const Text("Register"),
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

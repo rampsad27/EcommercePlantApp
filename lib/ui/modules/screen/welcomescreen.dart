@@ -14,7 +14,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       body: InkWell(
           onTap: () {
-            context.go("/onboarding1");
+            context.go("/onboarding");
           },
           child: Image.asset(
             'assets/img/1.png',
