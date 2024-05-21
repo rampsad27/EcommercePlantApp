@@ -112,10 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       GoogleSignInRepository();
                   googleSignInRepository.signUpWithEmailandPassword(
                       email, password);
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const HomeScreen()));
+
                   context.go("/home");
                 },
                 child: Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plant_app/ui/data/plantdata.dart';
 import 'package:plant_app/ui/modules/widgets/bottomnav.dart';
 import 'package:plant_app/ui/modules/widgets/listviewHorizontal.dart';
@@ -15,54 +16,60 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: const Icon(Icons.border_all), actions: const [
-        Icon(Icons.linear_scale_sharp),
-        Icon(Icons.notification_important_sharp),
+      appBar: AppBar(leading: const Icon(Icons.border_all), actions: [
+        IconButton(
+            onPressed: () {
+              context.go('/home/mycart');
+            },
+            icon: const Icon(Icons.shopping_cart)),
+        const Icon(Icons.notification_important_sharp),
       ]),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Good Morning",
-              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-            ),
-            const Text("Find your favourite plants here"),
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: 'Search',
-                border: OutlineInputBorder(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Good Morning",
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
               ),
-            ),
-            const Row(
-              children: [
-                Text(
-                  "Most Popular",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+              const Text("Find your favourite plants here"),
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Search',
+                  border: OutlineInputBorder(),
                 ),
-                Spacer(),
-                Text("View all")
-              ],
-            ),
-            ListviewHorizontal(
-              plantModelList: plantData,
-            ),
-            const Row(
-              children: [
-                Text(
-                  "My Favourite",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Spacer(),
-                Text("View all")
-              ],
-            ),
-            ListviewVertical(
-              plantModelList: plantData,
-            ),
-          ],
+              ),
+              const Row(
+                children: [
+                  Text(
+                    "Most Popular",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Spacer(),
+                  Text("View all")
+                ],
+              ),
+              ListviewHorizontal(
+                plantModelList: plantData,
+              ),
+              const Row(
+                children: [
+                  Text(
+                    "My Favourite",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Spacer(),
+                  Text("View all")
+                ],
+              ),
+              ListviewVertical(
+                plantModelList: plantData,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavigation(),

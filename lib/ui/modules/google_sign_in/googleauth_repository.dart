@@ -37,10 +37,10 @@ class GoogleSignInRepository {
         throw Exception('User is null');
       }
 
-      final AuthCredential emailAuthCredential =
-          EmailAuthProvider.credential(email: email, password: password);
+      // final AuthCredential emailAuthCredential =
+      //     EmailAuthProvider.credential(email: email, password: password);
 
-      await user.linkWithCredential(emailAuthCredential);
+      // await user.linkWithCredential(emailAuthCredential);
       await saveUser(UserEntity(
         email: email,
         password: password,
