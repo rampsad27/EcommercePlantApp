@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plant_app/repository/plantstore_repository.dart';
 import 'package:plant_app/ui/modules/components/plantmodel.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
+import 'package:plant_app/ui/modules/mycart/event_repository.dart';
 
 import 'package:plant_app/ui/modules/widgets/counter.dart';
 
@@ -16,7 +17,7 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
-  final PlantStoreRepository _plantStoreRepository = PlantStoreRepository();
+  final EventRepository _eventRepository = EventRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -73,18 +74,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     context
                         .read<EventBloc>()
                         .add(AddEvent(plantModel: widget.plantModel));
-                    // async {
-                    //   try {
-                    //     await
-                    _plantStoreRepository.saveUser(
-                        widget.plantModel); //use via bloc must have await
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content:
-                            Text('${widget.plantModel.name} added to cart!'),
-                      ),
-                    );
-                    Navigator.pop(context);
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

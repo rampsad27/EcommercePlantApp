@@ -12,6 +12,11 @@ class AddEvent extends EventEvent {
   AddEvent({required this.plantModel});
 }
 
+class SaveUserEvent extends EventEvent {
+  final PlantModel plantModel;
+  SaveUserEvent(this.plantModel);
+}
+
 class EventEvent {}
 
 class GetEvent extends EventEvent {}

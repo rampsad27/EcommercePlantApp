@@ -15,7 +15,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       try {
         emit(state.copyWith(error: null));
 
-        await eventRepository.addEvent(event.plantModel);
+        await eventRepository.addEventAndSaveUser(event.plantModel);
         emit(state.copyWith(eventStateEnum: EventStateEnum.success));
       } on FirebaseException catch (e) {
         emit(state.copyWith(
@@ -29,54 +29,71 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       }
     });
 
-    // on<GetEvent>((event, emit) async {
-    //   try {
-    //     // Emit the loading state
-    //     await emit.forEach(eventRepository.getRealtimeStreamData(),
-    //         onData: (data) {
-    //       // Emit the success state with the retrieved data
-    //       return state.copyWith(
-    //         eventStateEnum: EventStateEnum.success,
-    //         eventModelList: data,
-    //       );
-    //     }, onError: (e, _) {
-    //       // Emit the failure state with the error message
-    //       return state.copyWith(
-    //         eventStateEnum: EventStateEnum.failure,
-    //       );
-    //     });
-    //   } catch (e) {
-    //     // Emit the failure state with the error message
-    //     emit(state.copyWith(
-    //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
-    //   }
-    // });
+    on<SaveUserEvent>((event, emit) async {
+      try {
+        await eventRepository.saveUser(event.plantModel);
 
-    // on<GetEventById>((event, emit) async {
-    //   try {
-    //     emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
-    //     var res = await eventRepository.getEventsById(event.id);
-    //     emit(state.copyWith(
-    //       eventStateEnum: EventStateEnum.success,
-    //       eventModel: res,
-    //     ));
-    //   } catch (e) {
-    //     emit(state.copyWith(
-    //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
-    //   }
-    // });
-    // on<DeleteEventById>((event, emit) async {
-    //   try {
-    //     emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
-    //     await eventRepository.deleteEvent(event.id);
-
-    //     // add(GetEvent());
-    //   } catch (e) {
-    //     emit(state.copyWith(
-    //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
-    //   }
-    // });
+        emit(state.copyWith(
+          eventStateEnum: EventStateEnum.success,
+          snackbarContent: '${event.plantModel.name} added to cart!',
+        ));
+      } catch (e) {
+        emit(state.copyWith(
+          eventStateEnum: EventStateEnum.failure,
+          error: e.toString(),
+          snackbarContent: 'Failed to add ${event.plantModel.name} to cart!',
+        ));
+        log(e.toString());
+      }
+    });
   }
+  // on<GetEvent>((event, emit) async {
+  //   try {
+  //     // Emit the loading state
+  //     await emit.forEach(eventRepository.getRealtimeStreamData(),
+  //         onData: (data) {
+  //       // Emit the success state with the retrieved data
+  //       return state.copyWith(
+  //         eventStateEnum: EventStateEnum.success,
+  //         eventModelList: data,
+  //       );
+  //     }, onError: (e, _) {
+  //       // Emit the failure state with the error message
+  //       return state.copyWith(
+  //         eventStateEnum: EventStateEnum.failure,
+  //       );
+  //     });
+  //   } catch (e) {
+  //     // Emit the failure state with the error message
+  //     emit(state.copyWith(
+  //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
+  //   }
+  // });
+
+  // on<GetEventById>((event, emit) async {
+  //   try {
+  //     emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
+  //     var res = await eventRepository.getEventsById(event.id);
+  //     emit(state.copyWith(
+  //       eventStateEnum: EventStateEnum.success,
+  //       eventModel: res,
+  //     ));
+  //   } catch (e) {
+  //     emit(state.copyWith(
+  //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
+  //   }
+  // });
+  // on<DeleteEventById>((event, emit) async {
+  //   try {
+  //     emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
+  //     await eventRepository.deleteEvent(event.id);
+
+  //     // add(GetEvent());
+  //   } catch (e) {
+  //     emit(state.copyWith(
+  //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
+  //   }
+  // });
 
   final EventRepository eventRepository;
 }
