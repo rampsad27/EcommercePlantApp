@@ -46,54 +46,34 @@ class EventBloc extends Bloc<EventEvent, EventState> {
         log(e.toString());
       }
     });
+    on<GetEvent>((event, emit) async {
+      try {
+        final events = await eventRepository.getEvents();
+        emit(state.copyWith(
+          eventStateEnum: EventStateEnum.success,
+          eventModelList: events,
+        ));
+      } catch (e) {
+        emit(state.copyWith(
+          eventStateEnum: EventStateEnum.failure,
+          error: e.toString(),
+        ));
+      }
+    });
+
+    on<DeleteEventById>((event, emit) async {
+      try {
+        emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
+        await eventRepository.deleteEvent(event.id);
+        emit(const EventState(eventStateEnum: EventStateEnum.success));
+      } catch (e) {
+        emit(state.copyWith(
+          eventStateEnum: EventStateEnum.failure,
+          error: e.toString(),
+        ));
+      }
+    });
   }
-  // on<GetEvent>((event, emit) async {
-  //   try {
-  //     // Emit the loading state
-  //     await emit.forEach(eventRepository.getRealtimeStreamData(),
-  //         onData: (data) {
-  //       // Emit the success state with the retrieved data
-  //       return state.copyWith(
-  //         eventStateEnum: EventStateEnum.success,
-  //         eventModelList: data,
-  //       );
-  //     }, onError: (e, _) {
-  //       // Emit the failure state with the error message
-  //       return state.copyWith(
-  //         eventStateEnum: EventStateEnum.failure,
-  //       );
-  //     });
-  //   } catch (e) {
-  //     // Emit the failure state with the error message
-  //     emit(state.copyWith(
-  //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
-  //   }
-  // });
-
-  // on<GetEventById>((event, emit) async {
-  //   try {
-  //     emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
-  //     var res = await eventRepository.getEventsById(event.id);
-  //     emit(state.copyWith(
-  //       eventStateEnum: EventStateEnum.success,
-  //       eventModel: res,
-  //     ));
-  //   } catch (e) {
-  //     emit(state.copyWith(
-  //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
-  //   }
-  // });
-  // on<DeleteEventById>((event, emit) async {
-  //   try {
-  //     emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
-  //     await eventRepository.deleteEvent(event.id);
-
-  //     // add(GetEvent());
-  //   } catch (e) {
-  //     emit(state.copyWith(
-  //         eventStateEnum: EventStateEnum.failure, error: e.toString()));
-  //   }
-  // });
 
   final EventRepository eventRepository;
 }
