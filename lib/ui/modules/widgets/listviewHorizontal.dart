@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:plant_app/ui/modules/components/model.dart';
+import 'package:plant_app/ui/modules/components/plantmodel.dart';
 import 'package:plant_app/ui/modules/screen/productDetail.dart';
 
 class ListviewHorizontal extends StatefulWidget {

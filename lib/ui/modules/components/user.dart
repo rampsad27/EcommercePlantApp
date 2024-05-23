@@ -4,19 +4,31 @@ import 'dart:convert';
 class UserEntity {
   final String email;
   final String password;
+  final String fname;
+  final String lname;
+  final String uid;
+
   UserEntity({
     required this.email,
     required this.password,
+    required this.fname,
+    required this.lname,
+    required this.uid,
   });
 
   UserEntity copyWith({
-    String? uid,
     String? email,
     String? password,
+    String? fname,
+    String? lname,
+    String? uid,
   }) {
     return UserEntity(
       email: email ?? this.email,
       password: password ?? this.password,
+      fname: fname ?? this.fname,
+      lname: lname ?? this.lname,
+      uid: uid ?? this.uid,
     );
   }
 
@@ -24,6 +36,9 @@ class UserEntity {
     return <String, dynamic>{
       'email': email,
       'password': password,
+      'fname': fname,
+      'lname': lname,
+      'uid': uid,
     };
   }
 
@@ -31,6 +46,9 @@ class UserEntity {
     return UserEntity(
       email: map['email'] as String,
       password: map['password'] as String,
+      fname: map['fname'] as String,
+      lname: map['lname'] as String,
+      uid: map['uid'] as String,
     );
   }
 
@@ -40,15 +58,27 @@ class UserEntity {
       UserEntity.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'UserEntity( email: $email, password: $password)';
+  String toString() {
+    return 'UserEntity(email: $email, password: $password, fname: $fname, lname: $lname, uid: $uid)';
+  }
 
   @override
   bool operator ==(covariant UserEntity other) {
     if (identical(this, other)) return true;
 
-    return other.email == email && other.password == password;
+    return other.email == email &&
+        other.password == password &&
+        other.fname == fname &&
+        other.lname == lname &&
+        other.uid == uid;
   }
 
   @override
-  int get hashCode => email.hashCode ^ password.hashCode;
+  int get hashCode {
+    return email.hashCode ^
+        password.hashCode ^
+        fname.hashCode ^
+        lname.hashCode ^
+        uid.hashCode;
+  }
 }

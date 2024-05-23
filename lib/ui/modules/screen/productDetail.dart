@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:plant_app/ui/modules/components/model.dart';
-import 'package:plant_app/ui/modules/google_sign_in/plantstore_repository.dart';
+import 'package:plant_app/repository/plantstore_repository.dart';
+import 'package:plant_app/ui/modules/components/plantmodel.dart';
+import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
+
 import 'package:plant_app/ui/modules/widgets/counter.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -65,9 +68,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ],
               ),
               InkWell(
-                onTap: () async {
+                onTap: () {
                   try {
-                    await _plantStoreRepository.saveUser(widget.plantModel);
+                    context
+                        .read<EventBloc>()
+                        .add(AddEvent(plantModel: widget.plantModel));
+                    // async {
+                    //   try {
+                    //     await
+                    _plantStoreRepository.saveUser(
+                        widget.plantModel); //use via bloc must have await
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content:

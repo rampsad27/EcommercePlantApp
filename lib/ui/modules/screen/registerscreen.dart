@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_app/ui/modules/google_sign_in/googleauth_repository.dart';
-import 'package:plant_app/ui/modules/screen/homeScreen.dart';
-import 'package:plant_app/ui/modules/screen/loginScreen.dart';
+import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/bloc/emailsign_up_bloc.dart';
+import 'package:plant_app/ui/modules/LoginRegister/GoogleSignin/googleauth_repository.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -106,12 +106,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   "I agree to the Terms & Conditions & Private policy set out by this site"),
               InkWell(
                 onTap: () {
-                  String email = _emailregisterController.text;
-                  String password = _passwordregisterController.text;
-                  GoogleSignInRepository googleSignInRepository =
-                      GoogleSignInRepository();
-                  googleSignInRepository.signUpWithEmailandPassword(
-                      email, password);
+                  context.read<EmailsignUpBloc>().add(EmailSignUpRequested(
+                        fname: _fnameController.text,
+                        lname: _lnameController.text,
+                        email: _emailregisterController.text,
+                        password: _passwordconfirmController.text,
+                      ));
+                  // String email = _emailregisterController.text;
+                  // String password = _passwordregisterController.text;
+                  // GoogleSignInRepository googleSignInRepository =
+                  //     GoogleSignInRepository();
+                  // googleSignInRepository.signUpWithEmailandPassword(
+                  //     email, password);
 
                   context.go("/home");
                 },

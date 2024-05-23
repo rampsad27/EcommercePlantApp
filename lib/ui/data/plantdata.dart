@@ -1,4 +1,4 @@
-import 'package:plant_app/ui/modules/components/model.dart';
+import 'package:plant_app/ui/modules/components/plantmodel.dart';
 
 List<PlantModel> plantData = [
   PlantModel(

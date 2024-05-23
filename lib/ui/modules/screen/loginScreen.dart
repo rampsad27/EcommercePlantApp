@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_app/ui/modules/google_sign_in/googleauth_repository.dart';
+import 'package:plant_app/ui/modules/LoginRegister/GoogleSignin/googleauth_repository.dart';
+
 import 'package:plant_app/ui/modules/screen/homeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -84,12 +85,12 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 20),
               InkWell(
                 onTap: () async {
-                  String email = _emailController.text;
-                  String password = _passwordController.text;
-                  GoogleSignInRepository googleSignInRepository =
-                      GoogleSignInRepository();
-                  await googleSignInRepository.signInWithEmailAndPassword(
-                      email, password);
+                  // String email = _emailController.text;
+                  // String password = _passwordController.text;
+                  // GoogleSignInRepository googleSignInRepository =
+                  //     GoogleSignInRepository();
+                  // await googleSignInRepository.signInWithEmailAndPassword(
+                  //     email, password);
                   context.go('/home'); // Use GoRouter for navigation
                 },
                 child: Container(

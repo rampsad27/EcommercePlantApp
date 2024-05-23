@@ -5,12 +5,14 @@ class PlantModel {
   final String type;
   final double price;
   final String imageURL;
+  // final String uid;
 
   PlantModel({
     required this.name,
     required this.type,
     required this.price,
     required this.imageURL,
+    // required this.uid,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,6 +30,7 @@ class PlantModel {
       type: map['type'] as String,
       price: map['price'] as double,
       imageURL: map['imageURL'] as String,
+      // uid: map['uid'] as String,
     );
   }
 
@@ -41,12 +44,15 @@ class PlantModel {
     String? type,
     double? price,
     String? imageURL,
+    required String imageUrl,
+    String? uid,
   }) {
     return PlantModel(
       name: name ?? this.name,
       type: type ?? this.type,
       price: price ?? this.price,
       imageURL: imageURL ?? this.imageURL,
+      // uid: uid ?? this.uid,
     );
   }
 
@@ -62,11 +68,13 @@ class PlantModel {
     return other.name == name &&
         other.type == type &&
         other.price == price &&
+        // other.uid == uid &&
         other.imageURL == imageURL;
   }
 
   @override
   int get hashCode {
     return name.hashCode ^ type.hashCode ^ price.hashCode ^ imageURL.hashCode;
+    // uid.hashCode;
   }
 }
