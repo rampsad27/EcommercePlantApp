@@ -28,7 +28,7 @@ class GetEventById extends EventEvent {
 }
 
 class DeleteEventById extends EventEvent {
-  final String id;
+  final String name;
 
-  DeleteEventById(this.id);
+  DeleteEventById(this.name);
 }

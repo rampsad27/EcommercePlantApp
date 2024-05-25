@@ -64,7 +64,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     on<DeleteEventById>((event, emit) async {
       try {
         emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
-        await eventRepository.deleteEvent(event.id);
+        await eventRepository.deleteEvent(event.name);
         emit(const EventState(eventStateEnum: EventStateEnum.success));
       } catch (e) {
         emit(state.copyWith(

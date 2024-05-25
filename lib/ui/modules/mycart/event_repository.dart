@@ -17,7 +17,7 @@ class EventRepository {
     CollectionReference cr = _firebaseFirestore.collection(_event);
     plantModel = plantModel.copyWith(imageUrl: await uploadImage());
     await cr.doc(plantModel.name).set(plantModel.toMap());
-    await saveUser(plantModel);
+    // await saveUser(plantModel);
   }
 
   Future<void> saveUser(PlantModel plantModel) async {
@@ -30,7 +30,7 @@ class EventRepository {
     CollectionReference cr = _firebaseFirestore.collection(_event);
     QuerySnapshot querySnapshot = await cr.get();
     var list = querySnapshot.docs
-        .map((e) => PlantModel.fromJson(e.data() as String))
+        .map((e) => PlantModel.fromMap(e.data() as Map<String, dynamic>))
         .toList();
     return list;
   }
