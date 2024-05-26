@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:plant_app/ui/modules/components/plantmodel.dart';
+import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/screen/productDetail.dart';
 
 class ListviewHorizontal extends StatefulWidget {
@@ -35,8 +35,9 @@ class _ListviewHorizontalState extends State<ListviewHorizontal> {
               margin: const EdgeInsets.only(right: 8),
               width: 240,
               height: 240,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 237, 238, 239),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 255, 255, 255),
+                borderRadius: BorderRadius.circular(12),
               ),
               child: Column(
                 children: [
@@ -46,6 +47,7 @@ class _ListviewHorizontalState extends State<ListviewHorizontal> {
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(
                               image: NetworkImage(
                                   widget.plantModelList[index].imageURL),
@@ -63,7 +65,7 @@ class _ListviewHorizontalState extends State<ListviewHorizontal> {
                             padding: const EdgeInsets.all(8),
                             child: SvgPicture.asset(
                               'assets/svg/heart1.svg',
-                              color: Colors.green,
+                              color: const Color.fromARGB(255, 12, 133, 16),
                             )),
                       ),
                     ],

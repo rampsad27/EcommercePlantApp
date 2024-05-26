@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:plant_app/ui/modules/components/plantmodel.dart';
+import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/mycart/event_repository.dart';
 
 part 'eventfirebase_event.dart';

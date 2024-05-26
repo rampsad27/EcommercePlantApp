@@ -1,5 +1,4 @@
-import 'package:plant_app/repository/plantstore_repository.dart';
-import 'package:plant_app/ui/modules/components/plantmodel.dart';
+import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:uuid/uuid.dart';
 
 var uuid = const Uuid();

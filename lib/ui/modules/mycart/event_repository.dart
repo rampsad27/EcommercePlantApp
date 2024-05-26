@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:plant_app/ui/modules/components/plantmodel.dart';
+import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
 
 class EventRepository {

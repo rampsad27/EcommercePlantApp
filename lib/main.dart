@@ -9,6 +9,8 @@ import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
 import 'package:plant_app/ui/modules/mycart/event_repository.dart';
 
 import 'package:plant_app/ui/modules/screen/homeScreen.dart';
+import 'package:plant_app/ui/modules/theme/bloc/theme_bloc.dart';
+import 'package:plant_app/ui/modules/theme/configs/app_theme.dart';
 
 import 'package:plant_app/ui/router/app_router.dart';
 
@@ -44,10 +46,22 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 EventBloc(eventRepository: context.read<EventRepository>()),
           ),
+          BlocProvider(
+            create: (context) => ThemeBloc()
+              ..add(
+                ThemeChangeRequested(themeData: AppTheme.lightTheme),
+              ),
+          ),
         ],
-        child: MaterialApp.router(
-          routerConfig: AppRouter.router,
-        ),
+        child:
+            BlocBuilder<ThemeBloc, ThemeState>(builder: (context, themeState) {
+          return MaterialApp.router(
+            routerConfig: AppRouter.router,
+            theme: themeState is ThemeChanged
+                ? themeState.themeData
+                : AppTheme.lightTheme,
+          );
+        }),
       ),
     );
   }

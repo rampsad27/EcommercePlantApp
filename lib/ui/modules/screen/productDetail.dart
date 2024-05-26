@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:plant_app/repository/plantstore_repository.dart';
-import 'package:plant_app/ui/modules/components/plantmodel.dart';
+import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
 import 'package:plant_app/ui/modules/mycart/event_repository.dart';
 
@@ -74,6 +73,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     context
                         .read<EventBloc>()
                         .add(AddEvent(plantModel: widget.plantModel));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Added to cart'),
+                      ),
+                    );
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

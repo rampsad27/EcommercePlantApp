@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_app/ui/modules/components/plantmodel.dart';
+import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
 import 'package:plant_app/ui/modules/widgets/listviewVertical.dart';
 
@@ -24,6 +24,7 @@ class _MyCartState extends State<MyCart> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Cart"),
+        backgroundColor: const Color.fromARGB(255, 240, 238, 238),
       ),
       body: BlocListener<EventBloc, EventState>(
         listenWhen: (previous, current) =>
@@ -36,47 +37,52 @@ class _MyCartState extends State<MyCart> {
             );
           }
         },
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    BlocBuilder<EventBloc, EventState>(
-                      builder: (context, state) {
-                        if (state.eventStateEnum == EventStateEnum.loading) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else if (state.eventModelList != null &&
-                            state.eventModelList!.isNotEmpty) {
-                          return Expanded(
-                            child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemCount: state.eventModelList?.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  margin: const EdgeInsets.only(bottom: 8),
-                                  width: 240,
-                                  height: 130,
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromARGB(255, 238, 239, 240),
-                                  ),
-                                  child: Padding(
+        child: Container(
+          color: const Color.fromARGB(255, 240, 238, 238),
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      BlocBuilder<EventBloc, EventState>(
+                        builder: (context, state) {
+                          if (state.eventStateEnum == EventStateEnum.loading) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else if (state.eventModelList != null &&
+                              state.eventModelList!.isNotEmpty) {
+                            return Expanded(
+                              child: ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                itemCount: state.eventModelList?.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(state
-                                                  .eventModelList![index]
-                                                  .imageURL),
-                                              fit: BoxFit.cover,
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: Colors.white,
+                                                  width: 4.0,
+                                                ),
+                                                image: DecorationImage(
+                                                  image: NetworkImage(state
+                                                      .eventModelList![index]
+                                                      .imageURL),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              width: 130,
+                                              height: 120,
                                             ),
-                                          ),
-                                          width: 140,
-                                          height: 100,
+                                          ],
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -134,23 +140,39 @@ class _MyCartState extends State<MyCart> {
                                         ),
                                       ],
                                     ),
-                                  ),
-                                );
-                              },
+                                  );
+                                },
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                              child: Text('No events available.'),
+                            );
+                          }
+                        },
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.green,
                             ),
-                          );
-                        } else {
-                          return const Center(
-                            child: Text('No events available.'),
-                          );
-                        }
-                      },
-                    )
-                  ],
+                            height: 50,
+                            width: double.infinity,
+                            child: const Center(
+                                child: Text(
+                              "Proceed to checkout",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ))),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/ui/modules/components/plantmodel.dart';
+import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/screen/productDetail.dart';
 
 class ListviewVertical extends StatefulWidget {
@@ -14,29 +14,28 @@ class _ListviewVerticalState extends State<ListviewVertical> {
   int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProductDetailScreen(
-                    plantModel: widget.plantModelList[index],
-                  ),
+    return SliverList(delegate: SliverChildBuilderDelegate(
+      (context, index) {
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductDetailScreen(
+                  plantModel: widget.plantModelList[index],
                 ),
-              );
-            },
+              ),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
             child: Container(
               margin: const EdgeInsets.only(bottom: 8),
               width: 240,
               height: 100,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 238, 239, 240),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 255, 255, 255),
+                borderRadius: BorderRadius.circular(12),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -44,6 +43,7 @@ class _ListviewVerticalState extends State<ListviewVertical> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
                         image: DecorationImage(
                           image: NetworkImage(
                               widget.plantModelList[index].imageURL),
@@ -98,9 +98,9 @@ class _ListviewVerticalState extends State<ListviewVertical> {
                 ),
               ),
             ),
-          );
-        },
-      ),
-    );
+          ),
+        );
+      },
+    ));
   }
 }
