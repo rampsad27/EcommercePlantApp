@@ -12,7 +12,6 @@ class EmailSigninBloc extends Bloc<EmailSigninEvent, EmailSigninState> {
       : super(EmailSigninInitial()) {
     on<EmailSigninRequested>((event, emit) async {
       emit(EmailSigninLoadInProgress());
-      await Future.delayed(const Duration(seconds: 2));
       await authenticationRepository.saveUserInfo(event.email, event.password);
       emit(const EmailSigninSuccess(message: "bhayo"));
     });

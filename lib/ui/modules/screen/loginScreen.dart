@@ -1,11 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/authentication_repository.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/bloc/emailsignin_bloc.dart';
 import 'package:plant_app/ui/modules/LoginRegister/GoogleSignin/googleauth_repository.dart';
-
-import 'package:plant_app/ui/modules/screen/homeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -44,8 +43,14 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocListener<EmailSigninBloc, EmailSigninState>(
         listener: (context, state) {
           if (state is EmailSigninSuccess) {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+            try {
+              // UseGoRouterLogic here
+              context.go("/home");
+              // Navigator.pushReplacement(context,
+              //     MaterialPageRoute(builder: (context) => const HomeScreen()));
+            } catch (e) {
+              log(" HERE is ERROR: $e ");
+            }
           } else if (state is EmailSigninFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
