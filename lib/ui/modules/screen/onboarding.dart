@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:plant_app/ui/modules/screen/loginScreen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -86,7 +86,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         );
                       }
                     } else {
-                      context.go("/login"); // Corrected route path
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                      // context.go("/login"); // Corrected route path
                     }
                   });
                 },

@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:plant_app/configs/di/di.dart';
 import 'package:plant_app/ui/modules/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,16 +10,41 @@ class AuthenticationRepository {
   }
 
   Future<void> _getSharedPrefInstance() async {
-    preferences = await SharedPreferences.getInstance();
+    await Future.delayed(const Duration(seconds: 1));
+    preferences = getIt.get<SharedPreferences>();
   }
 
   SharedPreferences? preferences;
   final String _email = 'email';
   final String _password = 'password';
+  // final String _user = 'user';
+
+// // TODO: Let's save all the values like 1st name, last name and email in shared preferences
+// // Use UserEntity as a parameter.
+//   Future<bool?> saveUserInfo(UserEntity user) async {
+//     return await preferences?.setString(_user, user.toJson());
+//   }
+
+//   // to get UserEntity
+//   UserEntity? getUserInfo() {
+//     var user = preferences?.getString(_user);
+//     if (user != null) {
+//       return UserEntity.fromJson(user);
+//     }
+//     return null;
+//   }
 
   Future<bool> saveUserInfo(String email, String password) async {
-    await preferences?.setString(_email, email);
-    await preferences?.setString(_password, password);
+    try {
+      await preferences?.setString(_email, email);
+      await preferences?.setString(_password, password);
+
+      var x = getUserInfo();
+      log("X is $x");
+    } catch (e) {
+      log(e.toString());
+    }
+
     return true;
   }
 
