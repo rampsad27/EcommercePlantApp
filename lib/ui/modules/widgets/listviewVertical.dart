@@ -12,6 +12,7 @@ class ListviewVertical extends StatefulWidget {
 
 class _ListviewVerticalState extends State<ListviewVertical> {
   int selectedIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     return SliverList(delegate: SliverChildBuilderDelegate(

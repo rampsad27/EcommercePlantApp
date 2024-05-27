@@ -82,3 +82,10 @@ class UserEntity {
         uid.hashCode;
   }
 }
+//for login save
+
+class UserNameModel {
+  final String email;
+
+  UserNameModel({required this.email});
+}

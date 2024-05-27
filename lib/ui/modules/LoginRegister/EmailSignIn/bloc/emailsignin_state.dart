@@ -1,10 +1,26 @@
 part of 'emailsignin_bloc.dart';
 
-sealed class EmailsigninState extends Equatable {
-  const EmailsigninState();
-  
+sealed class EmailSigninState extends Equatable {
+  const EmailSigninState();
+
   @override
   List<Object> get props => [];
 }
 
-final class EmailsigninInitial extends EmailsigninState {}
+final class EmailSigninInitial extends EmailSigninState {}
+
+final class EmailSigninLoadInProgress extends EmailSigninState {}
+
+final class EmailSigninFailure extends EmailSigninState {
+  final String message;
+  const EmailSigninFailure({required this.message});
+}
+
+final class EmailSigninSuccess extends EmailSigninState {
+  final String message;
+  const EmailSigninSuccess({required this.message});
+}
+
+final class Authenticated extends EmailSigninState {}
+
+final class UnAuthenticated extends EmailSigninState {}

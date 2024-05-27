@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/bloc/emailsignin_bloc.dart';
 import 'package:plant_app/ui/modules/theme/bloc/theme_bloc.dart';
 import 'package:plant_app/ui/modules/theme/configs/app_theme.dart';
 import 'package:plant_app/ui/modules/widgets/menuitems.dart';
@@ -33,8 +34,12 @@ class _MenuScreenState extends State<MenuScreen> {
             const MenuItems(x: '/home', y: 'My Address'),
             const MenuItems(x: '/home/mycart', y: 'My Order'),
             const MenuItems(x: '/home', y: 'My Favourite'),
-            const MenuItems(x: '/home', y: 'Setting'),
-            const MenuItems(x: '/home', y: 'Help'),
+            const MenuItems(x: '/home', y: 'Settings'),
+            TextButton(
+                onPressed: () {
+                  context.read<EmailSigninBloc>().add(LogInLogOutRequested());
+                },
+                child: const Text("Log Out")),
             const Spacer(),
             Row(
               children: [
