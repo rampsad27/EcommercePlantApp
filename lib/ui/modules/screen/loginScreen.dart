@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -44,8 +46,14 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocListener<EmailSigninBloc, EmailSigninState>(
         listener: (context, state) {
           if (state is EmailSigninSuccess) {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+            try {
+              // UseGoRouterLogic here
+              context.go("/home");
+              // Navigator.pushReplacement(context,
+              //     MaterialPageRoute(builder: (context) => const HomeScreen()));
+            } catch (e) {
+              log(" HERE is ERROR: $e ");
+            }
           } else if (state is EmailSigninFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));

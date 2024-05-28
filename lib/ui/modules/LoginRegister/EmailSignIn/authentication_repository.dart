@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:plant_app/configs/di/di.dart';
 import 'package:plant_app/ui/modules/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,7 +10,8 @@ class AuthenticationRepository {
   }
 
   Future<void> _getSharedPrefInstance() async {
-    preferences = await SharedPreferences.getInstance();
+    await Future.delayed(const Duration(seconds: 1));
+    preferences = getIt.get<SharedPreferences>();
   }
 
   SharedPreferences? preferences;
@@ -15,8 +19,16 @@ class AuthenticationRepository {
   final String _password = 'password';
 
   Future<bool> saveUserInfo(String email, String password) async {
-    await preferences?.setString(_email, email);
-    await preferences?.setString(_password, password);
+    try {
+      await preferences?.setString(_email, email);
+      await preferences?.setString(_password, password);
+
+      var x = getUserInfo();
+      log("X is $x");
+    } catch (e) {
+      log(e.toString());
+    }
+
     return true;
   }
 

@@ -86,7 +86,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         );
                       }
                     } else {
-                      context.go("/login"); // Corrected route path
+                      context.go("/login");
                     }
                   });
                 },

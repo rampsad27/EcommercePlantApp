@@ -18,13 +18,6 @@ import 'package:plant_app/ui/modules/theme/configs/app_theme.dart';
 import 'package:plant_app/ui/router/app_router.dart';
 
 Future<void> main() async {
-  runApp(SizedBox(
-    child: Image.asset(
-      'assets/img/1.png',
-      fit: BoxFit.cover,
-    ),
-  ));
-  await Future.delayed(const Duration(seconds: 2));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setup();
@@ -70,32 +63,6 @@ class MyApp extends StatelessWidget {
             theme: themeState is ThemeChanged
                 ? themeState.themeData
                 : AppTheme.lightTheme,
-            // home: BlocListener<EmailSigninBloc, EmailSigninState>(
-            //   listenWhen: (previous, current) => current is UnAuthenticated,
-            //   listener: (context, state) {
-            //     if (state is UnAuthenticated) {
-            //       Navigator.pushAndRemoveUntil(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => const LoginScreen()),
-            //         (route) => false,
-            //       );
-            //     }
-            //   },
-            // child: BlocBuilder<EmailSigninBloc, EmailSigninState>(
-            //   buildWhen: (previous, current) =>
-            //       current is Authenticated ||
-            //       current is UnAuthenticated ||
-            //       current is EmailSigninInitial,
-            //   builder: (context, loginState) {
-            //     if (loginState is Authenticated) {
-            //       return const HomeScreen();
-            //     } else {
-            //       return const LoginScreen();
-            //     }
-            //   },
-            // ),
-            // ),
           );
         }),
       ),

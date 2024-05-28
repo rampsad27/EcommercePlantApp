@@ -7,6 +7,7 @@ import 'package:plant_app/ui/modules/theme/configs/app_colors.dart';
 import 'package:plant_app/ui/modules/widgets/bottomnav.dart';
 import 'package:plant_app/ui/modules/widgets/listviewHorizontal.dart';
 import 'package:plant_app/ui/modules/widgets/listviewVertical.dart';
+import 'package:share_plus/share_plus.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,7 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: const Icon(Icons.shopping_cart),
           ),
-          const Icon(Icons.notification_important_sharp),
+          IconButton(
+              onPressed: () {
+                Share.share("Share");
+              },
+              icon: const Icon(Icons.share)),
         ],
       ),
       body: BlocBuilder<ThemeBloc, ThemeState>(

@@ -41,7 +41,7 @@ class EmailSignUpRepository {
 
   Future<void> saveUser(UserEntity userEntity) async {
     CollectionReference collectionReference = _firestore.collection("user");
-    DocumentReference dr = collectionReference.doc(userEntity.uid);
+    DocumentReference dr = collectionReference.doc(userEntity.email);
     await dr.set(userEntity.toMap());
   }
 }

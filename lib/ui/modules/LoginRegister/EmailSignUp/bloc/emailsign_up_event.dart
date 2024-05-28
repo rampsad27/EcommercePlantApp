@@ -7,10 +7,12 @@ final class EmailSignUpRequested extends EmailsignUpEvent {
   final String password;
   final String fname;
   final String lname;
+  final String uuid;
   EmailSignUpRequested({
     required this.fname,
     required this.lname,
     required this.email,
     required this.password,
+    required this.uuid,
   });
 }

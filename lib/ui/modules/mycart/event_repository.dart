@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 
@@ -11,12 +13,13 @@ import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
 class EventRepository {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final String _event = 'planttt';
   Future<void> addEventAndSaveUser(PlantModel plantModel) async {
     CollectionReference cr = _firebaseFirestore.collection(_event);
     plantModel = plantModel.copyWith(imageUrl: await uploadImage());
-    await cr.doc(plantModel.name).set(plantModel.toMap());
+    await cr.doc(plantModel.uid).set(plantModel.toMap());
     // await saveUser(plantModel);
   }
 
@@ -27,12 +30,24 @@ class EventRepository {
   }
 
   Future<List<PlantModel>?> getEvents() async {
-    CollectionReference cr = _firebaseFirestore.collection(_event);
-    QuerySnapshot querySnapshot = await cr.get();
-    var list = querySnapshot.docs
-        .map((e) => PlantModel.fromMap(e.data() as Map<String, dynamic>))
-        .toList();
-    return list;
+    List<PlantModel> events = [];
+    try {
+      // CollectionReference cr = _firebaseFirestore.collection(_event);
+      final QuerySnapshot querySnapshot = await _firebaseFirestore
+          .collection(_event)
+          // .where('uid', isEqualTo: _auth.currentUser!.uid)
+          // .orderBy('createAt', descending: true)
+          .get();
+      events = querySnapshot.docs
+          .map((doc) => PlantModel.fromMap(doc.data() as Map<String, dynamic>))
+          .toList();
+      return events;
+    } on FirebaseException catch (e) {
+      log(e.toString());
+    } on Exception catch (e) {
+      print("sdgdsg $e");
+    }
+    return events;
   }
 
   Future<void> deleteEvent(String id) async {
@@ -42,7 +57,7 @@ class EventRepository {
 
 //storage
   Future<String> uploadImage() async {
-    Reference ref = _firebaseStorage.ref(_event).child("/images}");
+    Reference ref = _firebaseStorage.ref(_event).child("/images");
 
     var res =
         await ref.putFile(await getFileFromAssets()); //4.retured and upload

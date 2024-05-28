@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_app/ui/data/plantdata.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/bloc/emailsign_up_bloc.dart';
 import 'package:plant_app/ui/modules/LoginRegister/GoogleSignin/googleauth_repository.dart';
 
@@ -111,6 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         lname: _lnameController.text,
                         email: _emailregisterController.text,
                         password: _passwordconfirmController.text,
+                        uuid: uuid.v4(),
                       ));
                   // String email = _emailregisterController.text;
                   // String password = _passwordregisterController.text;

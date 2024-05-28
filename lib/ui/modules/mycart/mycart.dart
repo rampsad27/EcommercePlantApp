@@ -16,6 +16,7 @@ class _MyCartState extends State<MyCart> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     context.read<EventBloc>().add(GetEvent());
   }
 
