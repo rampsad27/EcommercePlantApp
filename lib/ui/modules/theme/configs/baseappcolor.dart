@@ -38,7 +38,8 @@ class LightAppColor implements BaseAppColor {
   // Color error = const Color(0xFFEF3C3C);
 
   @override
-  Color primary = const Color(0xFFDC6B59);
+  // Color primary = const Color(0xFFDC6B59);
+  Color primary = Colors.amber;
 
   @override
   Color info = const Color(0xFF3672EB);
@@ -88,7 +89,8 @@ class DarkAppColor implements BaseAppColor {
   // Color error = const Color(0xFFEF3C3C);
 
   @override
-  Color primary = const Color(0xFFDC6B59);
+  // Color primary = const Color(0xFFDC6B59);
+  Color primary = Colors.blue[400]!;
 
   @override
   Color info = const Color(0xFF3672EB);

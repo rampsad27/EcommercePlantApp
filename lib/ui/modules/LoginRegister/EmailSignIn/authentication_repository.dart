@@ -10,7 +10,7 @@ class AuthenticationRepository {
   }
 
   Future<void> _getSharedPrefInstance() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     preferences = getIt.get<SharedPreferences>();
   }
 

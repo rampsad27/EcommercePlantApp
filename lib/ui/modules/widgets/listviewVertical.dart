@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/configs/di/extension/build_context_extension.dart';
 import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/screen/productDetail.dart';
 
@@ -15,6 +16,8 @@ class _ListviewVerticalState extends State<ListviewVertical> {
 
   @override
   Widget build(BuildContext context) {
+    final appColor = context.appColor;
+
     return SliverList(delegate: SliverChildBuilderDelegate(
       (context, index) {
         return InkWell(
@@ -69,9 +72,9 @@ class _ListviewVerticalState extends State<ListviewVertical> {
                           ),
                           Text(
                             widget.plantModelList[index].type,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
-                              color: appColor.lightGrey,
+                              color: appColor.primary,
                             ),
                           ),
                           Row(

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_app/ui/modules/model/plantmodel.dart';
+import 'package:plant_app/configs/di/extension/build_context_extension.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
-import 'package:plant_app/ui/modules/theme/configs/app_colors.dart';
-import 'package:plant_app/ui/modules/widgets/listviewVertical.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key});
@@ -24,6 +22,8 @@ class _MyCartState extends State<MyCart> {
 
   @override
   Widget build(BuildContext context) {
+    final appColor = context.appColor;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Cart"),
@@ -106,9 +106,9 @@ class _MyCartState extends State<MyCart> {
                                               Text(
                                                 state.eventModelList![index]
                                                     .type,
-                                                style: const TextStyle(
+                                                style: TextStyle(
                                                   fontSize: 15,
-                                                  color: appColor.lightGrey,
+                                                  color: appColor.primary,
                                                 ),
                                               ),
                                               Row(

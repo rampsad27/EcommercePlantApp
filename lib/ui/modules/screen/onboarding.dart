@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_app/configs/di/extension/build_context_extension.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -15,6 +16,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appColor = context.appColor;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -122,6 +125,8 @@ class CreatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColor = context.appColor;
+
     return Container(
       padding: const EdgeInsets.only(left: 50, right: 50, bottom: 80),
       child: Column(
@@ -168,10 +173,10 @@ class CreatePage extends StatelessWidget {
           Text(
             description,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w400,
-              color: appColor.lightGrey,
+              color: appColor.primary,
             ),
           ),
           const SizedBox(

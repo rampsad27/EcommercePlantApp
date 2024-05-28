@@ -10,12 +10,8 @@ import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/emailsignup_repos
 import 'package:plant_app/ui/modules/imagePicker_camera/bloc/camera_bloc.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
 import 'package:plant_app/ui/modules/mycart/event_repository.dart';
-
-import 'package:plant_app/ui/modules/screen/homeScreen.dart';
-import 'package:plant_app/ui/modules/screen/loginScreen.dart';
 import 'package:plant_app/ui/modules/theme/bloc/theme_bloc.dart';
 import 'package:plant_app/ui/modules/theme/configs/app_theme.dart';
-
 import 'package:plant_app/ui/router/app_router.dart';
 
 Future<void> main() async {
@@ -59,7 +55,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp.router(
               routerConfig: AppRouter.router,
               theme: state is ThemeChanged
-                  ? state.themeData == ThemeMode.dark
+                  ? state.themeMode == ThemeMode.dark
                       ? AppTheme.darkTheme()
                       : AppTheme.lightTheme()
                   : AppTheme.lightTheme());

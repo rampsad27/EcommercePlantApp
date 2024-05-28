@@ -54,10 +54,10 @@ class _MenuScreenState extends State<MenuScreen> {
 
                       if (isDarkMode) {
                         context.read<ThemeBloc>().add(ThemeChangeRequested(
-                            themeData: AppTheme.darkTheme));
+                            themeData: AppTheme.darkTheme()));
                       } else {
                         context.read<ThemeBloc>().add(ThemeChangeRequested(
-                            themeData: AppTheme.lightTheme));
+                            themeData: AppTheme.lightTheme()));
                       }
                     });
                   },
