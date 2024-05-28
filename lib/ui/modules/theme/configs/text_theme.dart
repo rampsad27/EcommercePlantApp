@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/ui/modules/theme/configs/baseappcolor.dart';
 
 class AppTextTheme {
   // poppins font
@@ -9,7 +10,7 @@ class AppTextTheme {
         fontFamily: poppins,
         fontWeight: FontWeight.w700,
         fontSize: 32,
-        color: Colors.black,
+        // color: Colors.black,
       );
 
   // set headlineMedium
@@ -17,7 +18,7 @@ class AppTextTheme {
         fontFamily: poppins,
         fontWeight: FontWeight.w700,
         fontSize: 24,
-        color: Colors.black,
+        // color: Colors.black,
       );
 
   //set bodyLarge
@@ -25,7 +26,7 @@ class AppTextTheme {
         fontFamily: poppins,
         fontWeight: FontWeight.w500,
         fontSize: 20,
-        color: Colors.black,
+        // color: Colors.black,
       );
 
   //set bodyMedium
@@ -33,7 +34,7 @@ class AppTextTheme {
         fontFamily: poppins,
         fontWeight: FontWeight.w500,
         fontSize: 14,
-        color: Colors.black,
+        // color: Colors.black,
       );
 
   //set bodySmall
@@ -41,6 +42,10 @@ class AppTextTheme {
         fontFamily: poppins,
         fontWeight: FontWeight.w500,
         fontSize: 14,
-        color: Colors.black,
+        // color: Colors.black,
       );
+
+  static withColor(LightAppColor appColor) {}
+
+  // static withColor(LightAppColor appColor) {}
 }

@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.grey,
+        backgroundColor: appColor.grey,
         leading: IconButton(
           onPressed: () {
             context.go('/menu');
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return Container(
-            color: AppColor.grey,
+            color: appColor.lightGrey,
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(

@@ -136,7 +136,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const Center(
                   child: Text(
                 "Or continue with social account",
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(
+                  color: appColor.lightGrey,
+                ),
               )),
               const SizedBox(
                 height: 10,

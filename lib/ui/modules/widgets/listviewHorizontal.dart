@@ -87,7 +87,7 @@ class _ListviewHorizontalState extends State<ListviewHorizontal> {
                           widget.plantModelList[index].type,
                           style: const TextStyle(
                             fontSize: 15,
-                            color: Colors.grey,
+                            color: appColor.lightGrey,
                           ),
                         ),
                         Row(

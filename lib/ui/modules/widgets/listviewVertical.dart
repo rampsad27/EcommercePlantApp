@@ -71,7 +71,7 @@ class _ListviewVerticalState extends State<ListviewVertical> {
                             widget.plantModelList[index].type,
                             style: const TextStyle(
                               fontSize: 15,
-                              color: Colors.grey,
+                              color: appColor.lightGrey,
                             ),
                           ),
                           Row(

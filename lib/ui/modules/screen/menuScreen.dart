@@ -43,7 +43,7 @@ class _MenuScreenState extends State<MenuScreen> {
             const Spacer(),
             Row(
               children: [
-                const Icon(Icons.nightlight),
+                const Icon(Icons.nightlight_outlined),
                 const SizedBox(width: 8),
                 const Text("Dark Mode"),
                 Switch(

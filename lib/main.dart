@@ -7,6 +7,7 @@ import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/authentication_re
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/bloc/emailsignin_bloc.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/bloc/emailsign_up_bloc.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/emailsignup_repository.dart';
+import 'package:plant_app/ui/modules/imagePicker_camera/bloc/camera_bloc.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
 import 'package:plant_app/ui/modules/mycart/event_repository.dart';
 
@@ -43,27 +44,25 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 EventBloc(eventRepository: context.read<EventRepository>()),
           ),
-          BlocProvider(
-            create: (context) => ThemeBloc()
-              ..add(
-                ThemeChangeRequested(themeData: AppTheme.lightTheme),
-              ),
-          ),
+          BlocProvider(create: (context) => ThemeBloc()),
           BlocProvider(
             create: (context) => EmailSigninBloc(
                 authenticationRepository:
                     context.read<AuthenticationRepository>())
               ..add(CheckLoggedInUser()),
           ),
+          BlocProvider(
+            create: (context) => CameraBloc(),
+          ),
         ],
-        child:
-            BlocBuilder<ThemeBloc, ThemeState>(builder: (context, themeState) {
+        child: BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
           return MaterialApp.router(
-            routerConfig: AppRouter.router,
-            theme: themeState is ThemeChanged
-                ? themeState.themeData
-                : AppTheme.lightTheme,
-          );
+              routerConfig: AppRouter.router,
+              theme: state is ThemeChanged
+                  ? state.themeData == ThemeMode.dark
+                      ? AppTheme.darkTheme()
+                      : AppTheme.lightTheme()
+                  : AppTheme.lightTheme());
         }),
       ),
     );

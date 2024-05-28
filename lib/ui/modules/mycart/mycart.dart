@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
+import 'package:plant_app/ui/modules/theme/configs/app_colors.dart';
 import 'package:plant_app/ui/modules/widgets/listviewVertical.dart';
 
 class MyCart extends StatefulWidget {
@@ -106,7 +108,7 @@ class _MyCartState extends State<MyCart> {
                                                     .type,
                                                 style: const TextStyle(
                                                   fontSize: 15,
-                                                  color: Colors.grey,
+                                                  color: appColor.lightGrey,
                                                 ),
                                               ),
                                               Row(
@@ -153,7 +155,9 @@ class _MyCartState extends State<MyCart> {
                         },
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.go('/home/mycart/checkout');
+                        },
                         child: Container(
                             decoration: const BoxDecoration(
                               color: Colors.green,
