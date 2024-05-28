@@ -22,13 +22,13 @@ class EventEvent {}
 class GetEvent extends EventEvent {}
 
 class GetEventById extends EventEvent {
-  final String id;
+  final String uid;
 
-  GetEventById(this.id);
+  GetEventById(this.uid);
 }
 
 class DeleteEventById extends EventEvent {
-  final String name;
+  final String uid;
 
-  DeleteEventById(this.name);
+  DeleteEventById(this.uid);
 }

@@ -50,9 +50,9 @@ class EventRepository {
     return events;
   }
 
-  Future<void> deleteEvent(String id) async {
+  Future<void> deleteEvent(String uid) async {
     CollectionReference cr = _firebaseFirestore.collection(_event);
-    await cr.doc(id).delete();
+    await cr.doc(uid).delete();
   }
 
 //storage

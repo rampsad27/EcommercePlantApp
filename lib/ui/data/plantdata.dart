@@ -44,7 +44,7 @@ List<PlantModel> plantData = [
     uid: uuid.v4(),
   ),
   PlantModel(
-    name: "Monstera Plant",
+    name: "Sdferra Plant",
     type: "Indoor Plant",
     price: 50.00,
     imageURL:

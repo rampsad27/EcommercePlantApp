@@ -121,14 +121,14 @@ class _MyCartState extends State<MyCart> {
                                                   ),
                                                   IconButton(
                                                       onPressed: () {
-                                                        Navigator.pop(context);
+                                                        // Navigator.pop(context);
                                                         context
                                                             .read<EventBloc>()
                                                             .add(DeleteEventById(
                                                                 state
                                                                     .eventModelList![
                                                                         index]
-                                                                    .name));
+                                                                    .uid));
                                                       },
                                                       icon: const Icon(
                                                         Icons.delete,
