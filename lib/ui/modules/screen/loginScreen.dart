@@ -3,11 +3,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_app/configs/extension/build_context_extension.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/authentication_repository.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/bloc/emailsignin_bloc.dart';
 import 'package:plant_app/ui/modules/LoginRegister/GoogleSignin/googleauth_repository.dart';
 
 import 'package:plant_app/ui/modules/screen/homeScreen.dart';
+import 'package:plant_app/ui/modules/theme/bloc/theme_bloc.dart';
+import 'package:plant_app/ui/modules/theme/configs/app_theme.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -41,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appColor = context.appColor;
     return Form(
       key: _formKey,
       child: BlocListener<EmailSigninBloc, EmailSigninState>(
@@ -88,14 +92,34 @@ class _LoginScreenState extends State<LoginScreen> {
                       Icon(Icons.back_hand_sharp)
                     ],
                   ),
+                  // BlocBuilder<ThemeBloc, ThemeState>(
+                  //   builder: (context, state) {
+                  //     return Switch(
+                  //       value: state is ThemeChanged
+                  //           ? state.themeData == ThemeMode.dark
+                  //               ? true
+                  //               : false
+                  //           : false,
+                  //       onChanged: (value) {
+                  //         if (value) {
+                  //           context.read<ThemeBloc>().add(ThemeChangeRequested(
+                  //               themeData: AppTheme.darkTheme()));
+                  //         } else {
+                  //           context.read<ThemeBloc>().add(ThemeChangeRequested(
+                  //               themeData: AppTheme.lightTheme()));
+                  //         }
+                  //       },
+                  //     );
+                  //   },
+                  // ),
                   const Text(
                     "to PLANT",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  const Text(
+                  Text(
                     "Hello there, login to continue",
                     style: TextStyle(
-                      color: appColor.lightGrey,
+                      color: appColor.primary,
                     ),
                   ),
                   const SizedBox(
@@ -148,11 +172,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Center(
+                  Center(
                       child: Text(
                     "Or continue with social account",
                     style: TextStyle(
-                      color: appColor.lightGrey,
+                      color: appColor.primary,
                     ),
                   )),
                   const SizedBox(

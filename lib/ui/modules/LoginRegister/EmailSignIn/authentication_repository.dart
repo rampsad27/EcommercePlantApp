@@ -5,16 +5,16 @@ import 'package:plant_app/ui/modules/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthenticationRepository {
+  SharedPreferences? preferences;
   AuthenticationRepository() {
     _getSharedPrefInstance();
   }
 
   Future<void> _getSharedPrefInstance() async {
     await Future.delayed(const Duration(seconds: 1));
-    preferences = getIt.get<SharedPreferences>();
+    preferences = await getIt.getAsync<SharedPreferences>();
   }
 
-  SharedPreferences? preferences;
   final String _email = 'email';
   final String _password = 'password';
 

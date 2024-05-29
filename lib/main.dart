@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp.router(
               routerConfig: AppRouter.router,
               theme: state is ThemeChanged
-                  ? state.themeData == ThemeMode.dark
+                  ? state.themeMode == ThemeMode.dark
                       ? AppTheme.darkTheme()
                       : AppTheme.lightTheme()
                   : AppTheme.lightTheme());

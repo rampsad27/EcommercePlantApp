@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
 
-void setup() async {
+Future<void> setup() async {
   getIt.registerLazySingleton<EmailSignUpRepository>(
       () => EmailSignUpRepository());
   getIt.registerSingletonAsync<SharedPreferences>(

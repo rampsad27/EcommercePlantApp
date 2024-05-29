@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:plant_app/configs/extension/build_context_extension.dart';
 import 'package:plant_app/ui/modules/model/plantmodel.dart';
 import 'package:plant_app/ui/modules/screen/productDetail.dart';
 
@@ -14,6 +15,7 @@ class _ListviewHorizontalState extends State<ListviewHorizontal> {
   int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
+    final appColor = context.appColor;
     return SizedBox(
       height: 260,
       child: ListView.builder(
@@ -85,9 +87,9 @@ class _ListviewHorizontalState extends State<ListviewHorizontal> {
                         ),
                         Text(
                           widget.plantModelList[index].type,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 15,
-                            color: appColor.lightGrey,
+                            color: appColor.primary,
                           ),
                         ),
                         Row(

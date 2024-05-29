@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_app/configs/extension/build_context_extension.dart';
 import 'package:plant_app/ui/data/plantdata.dart';
 import 'package:plant_app/ui/modules/theme/bloc/theme_bloc.dart';
 import 'package:plant_app/ui/modules/theme/configs/app_colors.dart';
@@ -19,9 +20,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final appColor = context.appColor;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor.grey,
+        backgroundColor: appColor.primary,
         leading: IconButton(
           onPressed: () {
             context.go('/menu');
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return Container(
-            color: appColor.lightGrey,
+            color: appColor.primary,
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
