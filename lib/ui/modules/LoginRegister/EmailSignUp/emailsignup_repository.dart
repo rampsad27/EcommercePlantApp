@@ -19,10 +19,6 @@ class EmailSignUpRepository {
         throw Exception('User is null');
       }
 
-      // final AuthCredential emailAuthCredential =
-      //     EmailAuthProvider.credential(email: email, password: password);
-
-      // await user.linkWithCredential(emailAuthCredential);
       await saveUser(UserEntity(
         email: email,
         password: password,
@@ -40,8 +36,13 @@ class EmailSignUpRepository {
   }
 
   Future<void> saveUser(UserEntity userEntity) async {
-    CollectionReference collectionReference = _firestore.collection("user");
-    DocumentReference dr = collectionReference.doc(userEntity.email);
-    await dr.set(userEntity.toMap());
+    try {
+      CollectionReference collectionReference = _firestore.collection("user");
+      DocumentReference dr = collectionReference.doc(userEntity.email);
+      await dr.set(userEntity.toMap());
+      print("User saved successfully!");
+    } catch (e) {
+      print("Error saving user: $e");
+    }
   }
 }

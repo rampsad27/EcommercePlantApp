@@ -9,6 +9,7 @@ import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/emailsignin_repos
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/bloc/emailsign_up_bloc.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/emailsignup_repository.dart';
 import 'package:plant_app/ui/modules/imagePicker_camera/bloc/camera_bloc.dart';
+import 'package:plant_app/ui/modules/menu/widgets/bloc/dark_mode_bloc.dart';
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
 import 'package:plant_app/ui/modules/mycart/event_repository.dart';
 
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
                 EventBloc(eventRepository: context.read<EventRepository>()),
           ),
           BlocProvider(create: (context) => ThemeBloc()),
+          BlocProvider(create: (context) => DarkModeBloc()),
           BlocProvider(
             create: (context) => EmailSigninBloc(
                 emailSignInRepository: context.read<EmailSignInRepository>())

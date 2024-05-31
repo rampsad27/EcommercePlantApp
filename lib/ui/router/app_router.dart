@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_app/ui/modules/mycart/mycart.dart';
 import 'package:plant_app/ui/modules/checkout/checkout.dart';
 import 'package:plant_app/ui/modules/screen/loginScreen.dart';
-import 'package:plant_app/ui/modules/screen/menuScreen.dart';
+import 'package:plant_app/ui/modules/menu/menuScreen.dart';
 import 'package:plant_app/ui/modules/screen/onboarding.dart';
 import 'package:plant_app/ui/modules/screen/orderDetails.dart';
 import 'package:plant_app/ui/modules/screen/registerscreen.dart';

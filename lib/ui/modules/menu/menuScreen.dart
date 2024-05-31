@@ -6,7 +6,7 @@ import 'package:plant_app/configs/extension/build_context_extension.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/bloc/emailsignin_bloc.dart';
 import 'package:plant_app/ui/modules/theme/bloc/theme_bloc.dart';
 import 'package:plant_app/ui/modules/theme/configs/app_theme.dart';
-import 'package:plant_app/ui/modules/widgets/menuitems.dart';
+import 'package:plant_app/ui/modules/menu/widgets/menuitems.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});

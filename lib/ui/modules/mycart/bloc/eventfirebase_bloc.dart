@@ -61,18 +61,6 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       }
     });
 
-    // on<DeleteEventById>((event, emit) async {
-    //   try {
-    //     emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
-    //     await eventRepository.deleteEvent(event.uid);
-    //     emit(const EventState(eventStateEnum: EventStateEnum.success));
-    //   } catch (e) {
-    //     emit(state.copyWith(
-    //       eventStateEnum: EventStateEnum.failure,
-    //       error: e.toString(),
-    //     ));
-    //   }
-    // });
     on<DeleteEventById>((event, emit) async {
       try {
         emit(state.copyWith(eventStateEnum: EventStateEnum.loading));
