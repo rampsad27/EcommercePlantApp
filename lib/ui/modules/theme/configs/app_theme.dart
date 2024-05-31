@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:plant_app/ui/modules/theme/configs/app_colors.dart';
 import 'package:plant_app/ui/modules/theme/configs/baseappcolor.dart';
 import 'package:plant_app/ui/modules/theme/configs/text_theme.dart';
 

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_app/configs/di/di.dart';
 import 'package:plant_app/firebase_options.dart';
-import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/authentication_repository.dart';
+
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/bloc/emailsignin_bloc.dart';
+import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/emailsignin_repository.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/bloc/emailsign_up_bloc.dart';
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignUp/emailsignup_repository.dart';
 import 'package:plant_app/ui/modules/imagePicker_camera/bloc/camera_bloc.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (context) => EmailSignUpRepository()),
         RepositoryProvider(create: (context) => EventRepository()),
-        RepositoryProvider(create: (context) => AuthenticationRepository())
+        RepositoryProvider(create: (context) => EmailSignInRepository())
       ],
       child: MultiBlocProvider(
         providers: [
@@ -47,8 +48,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => ThemeBloc()),
           BlocProvider(
             create: (context) => EmailSigninBloc(
-                authenticationRepository:
-                    context.read<AuthenticationRepository>())
+                emailSignInRepository: context.read<EmailSignInRepository>())
               ..add(CheckLoggedInUser()),
           ),
           BlocProvider(

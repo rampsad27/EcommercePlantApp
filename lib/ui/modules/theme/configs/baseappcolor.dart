@@ -14,6 +14,8 @@ abstract class BaseAppColor {
   // late Color black;
 
   late Color primary;
+  late Color primarytext;
+  late Color secondary;
   // late Color error;
   // late Color warning;
   late Color info;
@@ -38,10 +40,15 @@ class LightAppColor implements BaseAppColor {
   // Color error = const Color(0xFFEF3C3C);
 
   @override
-  Color primary = const Color(0xFFDC6B59);
+  Color primary = const Color.fromARGB(255, 240, 238, 238);
+  @override
+  Color primarytext = const Color.fromARGB(255, 41, 40, 40);
 
   @override
-  Color info = const Color(0xFF3672EB);
+  Color info = const Color.fromARGB(255, 0, 0, 0);
+
+  @override
+  Color secondary = const Color.fromARGB(255, 255, 255, 255);
 
   // @override
   // Color success = const Color(0xFF439F6E);
@@ -88,10 +95,15 @@ class DarkAppColor implements BaseAppColor {
   // Color error = const Color(0xFFEF3C3C);
 
   @override
-  Color primary = const Color(0xFFDC6B59);
+  Color primary = const Color.fromARGB(255, 0, 0, 0);
+  @override
+  Color primarytext = const Color.fromARGB(255, 189, 192, 189);
 
   @override
-  Color info = const Color(0xFF3672EB);
+  Color secondary = const Color.fromARGB(255, 24, 23, 23);
+
+  @override
+  Color info = const Color.fromARGB(255, 253, 253, 253);
 
   // @override
   // Color success = const Color(0xFF439F6E);

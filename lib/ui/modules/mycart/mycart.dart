@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_app/configs/extension/build_context_extension.dart';
-import 'package:plant_app/ui/modules/model/plantmodel.dart';
+
 import 'package:plant_app/ui/modules/mycart/bloc/eventfirebase_bloc.dart';
-import 'package:plant_app/ui/modules/theme/configs/app_colors.dart';
-import 'package:plant_app/ui/modules/widgets/listviewVertical.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key});
@@ -28,8 +26,8 @@ class _MyCartState extends State<MyCart> {
     final appColor = context.appColor;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appColor.primary,
         title: const Text("My Cart"),
-        backgroundColor: const Color.fromARGB(255, 240, 238, 238),
       ),
       body: BlocListener<EventBloc, EventState>(
         listenWhen: (previous, current) =>
@@ -43,7 +41,7 @@ class _MyCartState extends State<MyCart> {
           }
         },
         child: Container(
-          color: const Color.fromARGB(255, 240, 238, 238),
+          color: appColor.primary,
           child: Stack(
             children: [
               Positioned.fill(
@@ -72,7 +70,7 @@ class _MyCartState extends State<MyCart> {
                                             Container(
                                               decoration: BoxDecoration(
                                                 border: Border.all(
-                                                  color: Colors.white,
+                                                  color: appColor.secondary,
                                                   width: 4.0,
                                                 ),
                                                 image: DecorationImage(

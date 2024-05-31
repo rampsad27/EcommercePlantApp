@@ -39,7 +39,7 @@ class _ListviewVerticalState extends State<ListviewVertical> {
                 width: 240,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 255, 255, 255),
+                  color: appColor.secondary,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
@@ -75,7 +75,7 @@ class _ListviewVerticalState extends State<ListviewVertical> {
                               widget.plantModelList[index].type,
                               style: TextStyle(
                                 fontSize: 15,
-                                color: appColor.primary,
+                                color: appColor.info,
                               ),
                             ),
                             Row(

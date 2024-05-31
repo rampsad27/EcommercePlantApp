@@ -38,7 +38,7 @@ class _ListviewHorizontalState extends State<ListviewHorizontal> {
               width: 240,
               height: 240,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 255, 255),
+                color: appColor.secondary,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Column(
@@ -89,7 +89,7 @@ class _ListviewHorizontalState extends State<ListviewHorizontal> {
                           widget.plantModelList[index].type,
                           style: TextStyle(
                             fontSize: 15,
-                            color: appColor.primary,
+                            color: appColor.info,
                           ),
                         ),
                         Row(

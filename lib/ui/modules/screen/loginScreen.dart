@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_app/configs/extension/build_context_extension.dart';
-import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/authentication_repository.dart';
+
 import 'package:plant_app/ui/modules/LoginRegister/EmailSignIn/bloc/emailsignin_bloc.dart';
 import 'package:plant_app/ui/modules/LoginRegister/GoogleSignin/googleauth_repository.dart';
 
@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
       key: _formKey,
       child: BlocListener<EmailSigninBloc, EmailSigninState>(
         listener: (context, state) {
-          if (state is EmailSigninSuccess) {
+          if (state is EmailSigninSuccess || state is Authenticated) {
             try {
               // UseGoRouterLogic here
               context.go("/home");
@@ -92,26 +92,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       Icon(Icons.back_hand_sharp)
                     ],
                   ),
-                  // BlocBuilder<ThemeBloc, ThemeState>(
-                  //   builder: (context, state) {
-                  //     return Switch(
-                  //       value: state is ThemeChanged
-                  //           ? state.themeData == ThemeMode.dark
-                  //               ? true
-                  //               : false
-                  //           : false,
-                  //       onChanged: (value) {
-                  //         if (value) {
-                  //           context.read<ThemeBloc>().add(ThemeChangeRequested(
-                  //               themeData: AppTheme.darkTheme()));
-                  //         } else {
-                  //           context.read<ThemeBloc>().add(ThemeChangeRequested(
-                  //               themeData: AppTheme.lightTheme()));
-                  //         }
-                  //       },
-                  //     );
-                  //   },
-                  // ),
                   const Text(
                     "to PLANT",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -119,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     "Hello there, login to continue",
                     style: TextStyle(
-                      color: appColor.primary,
+                      color: appColor.primarytext,
                     ),
                   ),
                   const SizedBox(
@@ -152,22 +132,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      _login();
-                      // context.go('/home');
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      color: Colors.green,
-                      child: const Center(
-                        child: Text(
-                          "Login",
-                          style: TextStyle(color: Colors.white),
+                  BlocBuilder<EmailSigninBloc, EmailSigninState>(
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          state is EmailSigninLoadInProgress ? null : _login();
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 50,
+                          color: Colors.green,
+                          child: const Center(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 10,
@@ -176,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                     "Or continue with social account",
                     style: TextStyle(
-                      color: appColor.primary,
+                      color: appColor.primarytext,
                     ),
                   )),
                   const SizedBox(
@@ -244,7 +227,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           context.go(
                               "/register"); // Use correct route for registration
                         },
-                        child: const Text("Register"),
+                        child: Text(
+                          "Register",
+                          style: TextStyle(color: appColor.primarytext),
+                        ),
                       ),
                     ],
                   ),

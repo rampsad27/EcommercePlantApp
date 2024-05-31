@@ -24,3 +24,13 @@ final class EmailSigninSuccess extends EmailSigninState {
 final class Authenticated extends EmailSigninState {}
 
 final class UnAuthenticated extends EmailSigninState {}
+
+final class LogoutSuccess extends EmailSigninState {
+  final String logoutSuccessMessage;
+  const LogoutSuccess({
+    required this.logoutSuccessMessage,
+  });
+
+  @override
+  List<Object> get props => [logoutSuccessMessage];
+}

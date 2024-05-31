@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_app/configs/extension/build_context_extension.dart';
 import 'package:plant_app/ui/data/plantdata.dart';
 import 'package:plant_app/ui/modules/theme/bloc/theme_bloc.dart';
-import 'package:plant_app/ui/modules/theme/configs/app_colors.dart';
+
 import 'package:plant_app/ui/modules/widgets/bottomnav.dart';
 import 'package:plant_app/ui/modules/widgets/listviewHorizontal.dart';
 import 'package:plant_app/ui/modules/widgets/listviewVertical.dart';

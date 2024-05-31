@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_app/configs/extension/build_context_extension.dart';
 
 class MenuItems extends StatelessWidget {
   final String x;
@@ -10,11 +11,17 @@ class MenuItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColor = context.appColor;
     return TextButton(
       onPressed: () {
         context.go(x);
       },
-      child: Text(y),
+      child: Text(
+        y,
+        style: TextStyle(
+          color: appColor.primarytext,
+        ),
+      ),
     );
   }
 }
