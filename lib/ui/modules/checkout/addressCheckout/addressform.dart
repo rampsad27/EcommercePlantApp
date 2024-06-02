@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:plant_app/ui/modules/checkout/addressCheckout/addressModel.dart';
+import 'package:plant_app/ui/modules/checkout/addressCheckout/bloc/address_bloc.dart';
+import 'package:uuid/uuid.dart';
 
-class AddressForm extends StatelessWidget {
+var uuid = const Uuid();
+
+class AddressForm extends StatefulWidget {
+  const AddressForm({super.key});
+
+  @override
+  State<AddressForm> createState() => _AddressFormState();
+}
+
+class _AddressFormState extends State<AddressForm> {
   final TextEditingController typeController = TextEditingController();
-  final TextEditingController streetController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController citycodeController = TextEditingController();
 
-  AddressForm({super.key});
+  final TextEditingController streetController = TextEditingController();
+
+  final TextEditingController cityController = TextEditingController();
+
+  final TextEditingController citycodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +55,17 @@ class AddressForm extends StatelessWidget {
           ),
           Center(
               child: IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.save_alt)))
+                  onPressed: () {
+                    Navigator.pop(context);
+                    context.read<AddressBloc>().add(AddAddressEvent(
+                        addressModel: AddressModel(
+                            uid: uuid.v4(),
+                            type: typeController.text,
+                            street: streetController.text,
+                            city: cityController.text,
+                            cityCode: citycodeController.text)));
+                  },
+                  icon: const Icon(Icons.save_alt)))
         ],
       )),
     );
