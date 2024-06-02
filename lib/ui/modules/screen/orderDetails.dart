@@ -23,7 +23,7 @@ class _OrderDetailsState extends State<OrderDetails> {
             onPressed: () {
               context.go("/home");
             },
-            child: const Text("Continue shopping"),
+            child: const Text("Continue shopping i want"),
           ),
           const SizedBox(
             height: 10,
