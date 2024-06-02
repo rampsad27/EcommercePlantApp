@@ -107,33 +107,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const Text(
                   "I agree to the Terms & Conditions & Private policy set out by this site"),
-              InkWell(
-                onTap: () {
-                  context.read<EmailsignUpBloc>().add(EmailSignUpRequested(
-                        fname: _fnameController.text,
-                        lname: _lnameController.text,
-                        email: _emailregisterController.text,
-                        password: _passwordconfirmController.text,
-                        uuid: uuid.v4(),
-                      ));
-                  // String email = _emailregisterController.text;
-                  // String password = _passwordregisterController.text;
-                  // GoogleSignInRepository googleSignInRepository =
-                  //     GoogleSignInRepository();
-                  // googleSignInRepository.signUpWithEmailandPassword(
-                  //     email, password);
+              BlocBuilder<EmailsignUpBloc, EmailsignUpState>(
+                builder: (context, state) {
+                  return InkWell(
+                    onTap: () {
+                      context.read<EmailsignUpBloc>().add(EmailSignUpRequested(
+                            fname: _fnameController.text,
+                            lname: _lnameController.text,
+                            email: _emailregisterController.text,
+                            password: _passwordconfirmController.text,
+                            uuid: uuid.v4(),
+                          ));
+                      // String email = _emailregisterController.text;
+                      // String password = _passwordregisterController.text;
+                      // GoogleSignInRepository googleSignInRepository =
+                      //     GoogleSignInRepository();
+                      // googleSignInRepository.signUpWithEmailandPassword(
+                      //     email, password);
 
-                  context.go("/home");
+                      context.go("/home");
+                    },
+                    child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        color: Colors.green,
+                        child: const Center(
+                            child: Text(
+                          "Register",
+                          style: TextStyle(color: Colors.white),
+                        ))),
+                  );
                 },
-                child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    color: Colors.green,
-                    child: const Center(
-                        child: Text(
-                      "Register",
-                      style: TextStyle(color: Colors.white),
-                    ))),
               ),
               Center(
                   child: Text(

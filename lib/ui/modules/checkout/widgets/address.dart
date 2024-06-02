@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/configs/extension/build_context_extension.dart';
+import 'package:plant_app/ui/modules/checkout/addressform.dart';
 
 class AddressWidget extends StatelessWidget {
   const AddressWidget({super.key});
@@ -39,9 +40,31 @@ class AddressWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            const Spacer(),
+            InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return AddressForm();
+                  },
+                );
+              },
+              child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.green,
+                  ),
+                  height: 64,
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      "Add New Address",
+                      style: TextStyle(
+                        color: appColor.primary,
+                      ),
+                    ),
+                  )),
+            )
           ],
         ),
       ),
